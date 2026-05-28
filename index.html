@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano de Ação — Marcelo & Maria</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: #0D0D0D;
+    color: #F0EDE8;
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lock-wrap {
+    text-align: center;
+    padding: 40px 24px;
+    position: relative;
+  }
+  .lock-wrap::before {
+    content: '';
+    position: fixed;
+    top: -100px; left: 50%; transform: translateX(-50%);
+    width: 700px; height: 500px;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(45,106,79,0.15) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.10) 0%, transparent 55%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .lock-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+  .lock-eyebrow {
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #C9A84C;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 900;
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  h1 em { font-style: italic; color: #C9A84C; }
+  .lock-sub {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 36px;
+    font-weight: 300;
+    position: relative;
+    z-index: 1;
+  }
+  .input-wrap {
+    position: relative;
+    max-width: 320px;
+    margin: 0 auto 16px;
+    z-index: 1;
+  }
+  input[type="password"] {
+    width: 100%;
+    background: #131313;
+    border: 1px solid #2A2A2A;
+    border-radius: 10px;
+    padding: 14px 50px 14px 18px;
+    color: #F0EDE8;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color .25s;
+    letter-spacing: 3px;
+  }
+  input[type="password"]:focus { border-color: #C9A84C; }
+  input[type="password"]::placeholder { letter-spacing: 0; color: #444; }
+  .toggle-pw {
+    position: absolute;
+    right: 14px; top: 50%; transform: translateY(-50%);
+    background: none; border: none;
+    color: #555; cursor: pointer; font-size: 16px;
+    padding: 4px;
+    transition: color .2s;
+  }
+  .toggle-pw:hover { color: #C9A84C; }
+  .btn-enter {
+    display: block;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #2D6A4F, #40916C);
+    color: #F0EDE8;
+    border: none;
+    border-radius: 10px;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity .2s, transform .2s;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-enter:hover { opacity: 0.88; transform: translateY(-1px); }
+  .error-msg {
+    color: #E74C3C;
+    font-size: 12.5px;
+    margin-top: 12px;
+    display: none;
+    position: relative;
+    z-index: 1;
+  }
+  .credits {
+    margin-top: 40px;
+    font-size: 11px;
+    color: #333;
+    position: relative;
+    z-index: 1;
+  }
+  #main-content { display: none; }
+</style>
+</head>
+<body>
+
+<div id="lock-screen">
+  <div class="lock-wrap">
+    <span class="lock-icon">🔒</span>
+    <div class="lock-eyebrow">Acesso Restrito</div>
+    <h1>Plano de <em>Ação</em></h1>
+    <p class="lock-sub">Marcelo & Maria · Documento confidencial</p>
+
+    <div class="input-wrap">
+      <input type="password" id="pw-input" placeholder="Digite a senha" autocomplete="off" />
+      <button class="toggle-pw" onclick="togglePw()" title="Mostrar/ocultar">👁</button>
+    </div>
+    <button class="btn-enter" onclick="checkPw()">Acessar</button>
+    <div class="error-msg" id="err-msg">Senha incorreta. Tente novamente.</div>
+
+    <p class="credits">Matheus Melo · Grão — Grupo Primo</p>
+  </div>
+</div>
+
+
+<div id="main-content">
+<style>
+
+  :root {
+    --green:   #2D6A4F;
+    --green-l: #40916C;
+    --green-s: #1B4332;
+    --gold:    #C9A84C;
+    --gold-l:  #E2C77A;
+    --red:     #C0392B;
+    --orange:  #D35400;
+    --blue:    #2471A3;
+    --bg:      #0D0D0D;
+    --surf:    #131313;
+    --surf2:   #1A1A1A;
+    --surf3:   #212121;
+    --border:  #272727;
+    --border2: #333;
+    --text:    #F0EDE8;
+    --muted:   #777;
+    --muted2:  #555;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ─────────────────────────────────────────── */
+  .hero {
+    text-align: center;
+    padding: 72px 24px 52px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 420px;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(45,106,79,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 50%, rgba(201,168,76,0.12) 0%, transparent 55%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 5px 16px;
+    border-radius: 100px;
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(40px, 7vw, 76px);
+    font-weight: 900;
+    line-height: 1.04;
+    margin-bottom: 10px;
+  }
+  .hero h1 em { font-style: italic; color: var(--gold); }
+  .hero-names {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 3vw, 28px);
+    font-weight: 400;
+    font-style: italic;
+    color: var(--muted);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+  .hero-sub {
+    color: var(--muted);
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto 44px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── SNAPSHOT ─────────────────────────────────────── */
+  .snapshot {
+    max-width: 860px;
+    margin: 0 auto 64px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .snap-card {
+    background: var(--surf);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .snap-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .snap-card.g::after  { background: var(--green-l); }
+  .snap-card.gd::after { background: var(--gold); }
+  .snap-card.r::after  { background: #27AE60; }
+  .snap-card.b::after  { background: var(--blue); }
+  .snap-val {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .snap-card.g  .snap-val { color: var(--green-l); }
+  .snap-card.gd .snap-val { color: var(--gold); }
+  .snap-card.r  .snap-val { color: #2ECC71; }
+  .snap-card.b  .snap-val { color: #5DADE2; }
+  .snap-lbl { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* ── CONTAINER ────────────────────────────────────── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+  }
+
+  /* ── SECTION HEADER ───────────────────────────────── */
+  .sec-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .sec-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    color: var(--gold);
+    min-width: 24px;
+  }
+  .sec-line {
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, var(--border2), transparent);
+  }
+  .sec-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3.5vw, 30px);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+  .sec-title span { color: var(--gold); font-style: italic; }
+
+  /* ── PILLAR CARDS ─────────────────────────────────── */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .pillar {
+    background: var(--surf);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 22px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color .25s, transform .25s;
+  }
+  .pillar:hover { border-color: var(--border2); transform: translateY(-2px); }
+  .pillar-glow {
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    opacity: 0.12;
+  }
+  .pillar-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 44px;
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 12px;
+    opacity: 0.18;
+    position: absolute;
+    top: 16px; right: 18px;
+  }
+  .pillar-icon { font-size: 24px; margin-bottom: 14px; display: block; }
+  .pillar-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: var(--text);
+  }
+  .pillar-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+  .pillar-tag {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 100px;
+    margin-top: 14px;
+    font-weight: 500;
+  }
+
+  /* ── TIMELINE / ACTION BLOCKS ─────────────────────── */
+  .timeline { display: flex; flex-direction: column; gap: 4px; }
+
+  .tl-block {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .tl-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .tl-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+  .tl-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .tl-arrow {
+    margin-left: auto;
+    font-size: 12px;
+    color: var(--muted2);
+    transition: transform .3s;
+  }
+  .tl-block.open .tl-arrow { transform: rotate(180deg); }
+
+  .tl-body {
+    display: none;
+    padding: 0 20px 18px;
+    border-top: 1px solid var(--border);
+  }
+  .tl-block.open .tl-body { display: block; }
+
+  .action-row {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 12px 20px;
+    align-items: start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .action-row:last-child { border-bottom: none; }
+  .action-title { font-size: 13.5px; font-weight: 600; margin-bottom: 4px; }
+  .action-detail { font-size: 12px; color: var(--muted); line-height: 1.55; font-weight: 300; }
+  .action-who {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted2);
+    white-space: nowrap;
+    padding-top: 3px;
+    text-align: right;
+  }
+  .done-badge {
+    display: inline-block;
+    background: rgba(46,204,113,0.15);
+    color: #2ECC71;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    letter-spacing: 1px;
+  }
+
+  /* urgency colors */
+  .tl-block.urgent   { }
+  .tl-block.urgent   .tl-header { background: rgba(192,57,43,0.08); }
+  .tl-block.urgent   .tl-dot   { background: var(--red); }
+  .tl-block.urgent   .tl-label { color: #E74C3C; }
+
+  .tl-block.warn     .tl-header { background: rgba(211,84,0,0.08); }
+  .tl-block.warn     .tl-dot   { background: var(--orange); }
+  .tl-block.warn     .tl-label { color: #E67E22; }
+
+  .tl-block.go       .tl-header { background: rgba(45,106,79,0.08); }
+  .tl-block.go       .tl-dot   { background: var(--green-l); }
+  .tl-block.go       .tl-label { color: var(--green-l); }
+
+  .tl-block.habit    .tl-header { background: rgba(201,168,76,0.07); }
+  .tl-block.habit    .tl-dot   { background: var(--gold); }
+  .tl-block.habit    .tl-label { color: var(--gold); }
+
+  /* ── PROJECTS GRID ────────────────────────────────── */
+  .proj-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .proj-card {
+    background: var(--surf);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .proj-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+  }
+  .proj-card.p1::before { background: linear-gradient(90deg, var(--green-l), transparent); }
+  .proj-card.p2::before { background: linear-gradient(90deg, var(--gold), transparent); }
+  .proj-card.p3::before { background: linear-gradient(90deg, var(--blue), transparent); }
+  .proj-card.p4::before { background: linear-gradient(90deg, var(--orange), transparent); }
+
+  .proj-emoji { font-size: 22px; margin-bottom: 10px; display: block; }
+  .proj-name  { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .proj-date  { font-size: 11px; color: var(--muted); margin-bottom: 10px; font-style: italic; }
+  .proj-val   {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .proj-card.p1 .proj-val { color: var(--green-l); }
+  .proj-card.p2 .proj-val { color: var(--gold); }
+  .proj-card.p3 .proj-val { color: #5DADE2; }
+  .proj-card.p4 .proj-val { color: #E59866; }
+
+  .proj-next { font-size: 12px; color: var(--muted); line-height: 1.5; font-weight: 300; }
+  .proj-next strong { color: var(--text); font-weight: 500; }
+
+  /* ── INVESTMENT TABLE ─────────────────────────────── */
+  .inv-table { width: 100%; border-collapse: collapse; }
+  .inv-table th {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border2);
+  }
+  .inv-table td {
+    padding: 13px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.5;
+  }
+  .inv-table tr:last-child td { border-bottom: none; }
+  .inv-table tbody tr { transition: background .2s; }
+  .inv-table tbody tr:hover { background: var(--surf2); }
+  .inv-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 9px;
+    border-radius: 4px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .inv-tag.ind { background: rgba(45,106,79,0.2); color: var(--green-l); }
+  .inv-tag.res { background: rgba(36,113,163,0.2); color: #5DADE2; }
+  .inv-action-text { font-size: 11.5px; color: var(--muted); font-weight: 300; }
+
+  /* ── RULES OF GOLD ────────────────────────────────── */
+  .rules {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+  .rule-card {
+    background: var(--surf);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 26px 22px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    transition: border-color .25s, transform .25s;
+  }
+  .rule-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-2px); }
+  .rule-icon {
+    font-size: 28px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .rule-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .rule-desc { font-size: 12.5px; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  /* ── DIVIDER ──────────────────────────────────────── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border2), transparent);
+    margin: 0;
+  }
+
+  /* ── FOOTER ───────────────────────────────────────── */
+  footer {
+    text-align: center;
+    padding: 40px 24px;
+    color: var(--muted2);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+    line-height: 1.8;
+  }
+  footer strong { color: var(--muted); }
+
+  /* ── VERDICT BOX ──────────────────────────────────── */
+  .verdict {
+    max-width: 860px;
+    margin: 0 auto 60px;
+    padding: 0 24px;
+  }
+  .verdict-box {
+    background: linear-gradient(135deg, #0f1a14 0%, #141208 100%);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px;
+    padding: 28px 32px;
+    text-align: center;
+  }
+  .verdict-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+  .verdict-text {
+    font-size: 15px;
+    color: #C5BFB5;
+    line-height: 1.7;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .verdict-text strong { color: var(--text); }
+
+  /* ── FORMULA BOX ──────────────────────────────────── */
+  .formula {
+    background: var(--surf2);
+    border: 1px solid var(--border2);
+    border-left: 3px solid var(--gold);
+    border-radius: 10px;
+    padding: 18px 22px;
+    font-size: 13px;
+    color: #B8B2A8;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    font-weight: 300;
+  }
+  .formula strong { color: var(--text); font-weight: 500; }
+  .formula code {
+    display: block;
+    background: rgba(0,0,0,0.3);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--gold-l);
+    letter-spacing: 0.3px;
+  }
+
+  /* ── ANIMATIONS ───────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero         { animation: fadeUp .65s ease both; }
+  .snapshot     { animation: fadeUp .65s .15s ease both; }
+  .verdict      { animation: fadeUp .65s .25s ease both; }
+  .container > * { animation: fadeUp .55s ease both; }
+
+  @media (max-width: 680px) {
+    .snapshot     { grid-template-columns: repeat(2, 1fr); }
+    .pillars      { grid-template-columns: 1fr; }
+    .proj-grid    { grid-template-columns: 1fr; }
+    .rules        { grid-template-columns: 1fr; }
+  }
+
+</style>
+
+
+<!-- ════════════════════ HERO ════════════════════ -->
+<div class="hero">
+  <div class="hero-eyebrow">Mapa Mental — Planejamento Financeiro</div>
+  <h1>Plano de <em>Ação</em></h1>
+  <p class="hero-names">Marcelo &amp; Maria · Maio de 2026</p>
+  <p class="hero-sub">Três pilares, metas concretas e passos claros para construir patrimônio, realizar projetos e conquistar a independência financeira.</p>
+</div>
+
+<!-- ════════════════════ SNAPSHOT ════════════════════ -->
+<div class="snapshot">
+  <div class="snap-card g">
+    <div class="snap-val">R$ 15.300</div>
+    <div class="snap-lbl">Renda mensal base do casal</div>
+  </div>
+  <div class="snap-card gd">
+    <div class="snap-val">~R$ 1.538</div>
+    <div class="snap-lbl">Capacidade atual de aportar</div>
+  </div>
+  <div class="snap-card r">
+    <div class="snap-val">R$ 0</div>
+    <div class="snap-lbl">Dívidas de consumo — zeradas</div>
+  </div>
+  <div class="snap-card b">
+    <div class="snap-val">Novembro/26</div>
+    <div class="snap-lbl">Próxima grande meta — Austrália</div>
+  </div>
+</div>
+
+<!-- ════════════════════ VERDICT ════════════════════ -->
+<div class="verdict">
+  <div class="verdict-box">
+    <div class="verdict-eyebrow">⚡ Situação Atual</div>
+    <p class="verdict-text">
+      O diagnóstico está completo. Marcelo e Maria têm <strong>renda estável, zero dívidas de consumo</strong> e projetos de vida bem definidos. O próximo passo é transformar intenção em hábito — orçamento, proteção e investimento trabalhando juntos.
+    </p>
+  </div>
+</div>
+
+<!-- ════════════════════ MAIN CONTENT ════════════════════ -->
+<div class="container">
+
+  <!-- ── 1. OS 3 PILARES ── -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">Os <span>3 Pilares</span> do Plano</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="pillars">
+
+      <div class="pillar">
+        <div class="pillar-glow" style="background:#40916C"></div>
+        <div class="pillar-num" style="color:var(--green-l)">1</div>
+        <span class="pillar-icon">🛡️</span>
+        <div class="pillar-name">Proteção Patrimonial</div>
+        <div class="pillar-desc">Revisar apólices existentes, identificar lacunas (invalidez, doenças graves, cirurgia) e contratar cobertura adequada ao orçamento. Nenhum patrimônio sobrevive sem proteção.</div>
+        <span class="pillar-tag" style="background:rgba(64,145,108,0.15);color:var(--green-l)">Prioridade imediata</span>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-glow" style="background:#C9A84C"></div>
+        <div class="pillar-num" style="color:var(--gold)">2</div>
+        <span class="pillar-icon">📊</span>
+        <div class="pillar-name">Controle Orçamentário</div>
+        <div class="pillar-desc">Classificar lançamentos, acompanhar metas semanalmente e criar o hábito de se pagar primeiro. O orçamento é o motor que alimenta tudo que vem depois.</div>
+        <span class="pillar-tag" style="background:rgba(201,168,76,0.15);color:var(--gold)">Hábito semanal</span>
+      </div>
+
+      <div class="pillar">
+        <div class="pillar-glow" style="background:#2471A3"></div>
+        <div class="pillar-num" style="color:#5DADE2">3</div>
+        <span class="pillar-icon">📈</span>
+        <div class="pillar-name">Investimentos Estratégicos</div>
+        <div class="pillar-desc">Aportar sempre que disponível, diversificar carteira e alinhar cada centavo a um objetivo: reserva de emergência, projetos de vida ou independência financeira.</div>
+        <span class="pillar-tag" style="background:rgba(36,113,163,0.15);color:#5DADE2">Aportar ao avisar</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── 2. PLANO DE AÇÃO ── -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">Plano de Ação <span>Passo a Passo</span></h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="formula">
+      <strong>Regra de ouro:</strong> cada ação tem prazo, responsável e impacto definidos. Clique em cada bloco para expandir os detalhes.
+    </div>
+
+    <div class="timeline">
+
+      <!-- AGORA -->
+      <div class="tl-block urgent open">
+        <div class="tl-header" onclick="toggle(this.parentElement)">
+          <div class="tl-dot"></div>
+          <span class="tl-label">Agora — Esta semana</span>
+          <span class="tl-arrow">▼</span>
+        </div>
+        <div class="tl-body">
+          <div class="action-row">
+            <div>
+              <div class="action-title">Enviar apólice do seguro de vida (Marcelo)</div>
+              <div class="action-detail">Mandar ao Matheus via WhatsApp ou e-mail para análise com especialista. A apólice define o que cobre — sem ela, não há como identificar lacunas.</div>
+            </div>
+            <div class="action-who">Marcelo</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Enviar contrato do financiamento imobiliário</div>
+              <div class="action-detail">Juros aprox. 10% a.a. Investigar seguro prestamista que saltou de R$40 para R$400/mês — possível troca ou renegociação. Portabilidade de crédito também a avaliar.</div>
+            </div>
+            <div class="action-who">Marcelo</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Enviar declarações de IR 2025 (ambos)</div>
+              <div class="action-detail">Marcelo pagou ~R$680 e Maria ~R$800. Analisar otimização via saúde, educação e previdência PGBL para aumentar restituição em 2027.</div>
+            </div>
+            <div class="action-who">Ambos</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Anuidade Santander cancelada <span class="done-badge">FEITO ✓</span></div>
+              <div class="action-detail">Eliminados ~R$85/mês. Parcelas restantes chegam via boleto — lançar manualmente na ferramenta como "projetos" para acompanhamento.</div>
+            </div>
+            <div class="action-who">Marcelo ✓</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2–4 SEMANAS -->
+      <div class="tl-block warn open">
+        <div class="tl-header" onclick="toggle(this.parentElement)">
+          <div class="tl-dot"></div>
+          <span class="tl-label">Próximas 2–4 semanas</span>
+          <span class="tl-arrow">▼</span>
+        </div>
+        <div class="tl-body">
+          <div class="action-row">
+            <div>
+              <div class="action-title">Reunião de proteção com especialista</div>
+              <div class="action-detail">Após análise da apólice, entender coberturas que faltam para Maria (invalidez, doenças graves, cirurgia). Contratar somente o que couber no orçamento — sem pressão.</div>
+            </div>
+            <div class="action-who">Matheus</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Cotar passagens — Austrália, Novembro/2026</div>
+              <div class="action-detail">Data ajustada: setembro → novembro. Matheus verifica cotações e uso das 138.000 milhas LATAM. Antecipar compra reduz custo — petróleo encareceu tarifas.</div>
+            </div>
+            <div class="action-who">Ambos</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Classificar lançamentos pendentes — Nubank (Maria)</div>
+              <div class="action-detail">Pix e transferências do Nubank sem categoria. Necessário para fechar o orçamento de maio com precisão.</div>
+            </div>
+            <div class="action-who">Maria</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Confirmar detalhes dos fundos PGBL (Marcelo)</div>
+              <div class="action-detail">3 fundos mapeados: Platum RV49 — R$4.180 · Platum IV RF — R$16.319 · Breve Imã Plus RF — R$11.842. Total: ~R$32.342. Enviar detalhes ao Matheus.</div>
+            </div>
+            <div class="action-who">Marcelo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1–3 MESES -->
+      <div class="tl-block go open">
+        <div class="tl-header" onclick="toggle(this.parentElement)">
+          <div class="tl-dot"></div>
+          <span class="tl-label">Próximos 1–3 meses</span>
+          <span class="tl-arrow">▼</span>
+        </div>
+        <div class="tl-body">
+          <div class="action-row">
+            <div>
+              <div class="action-title">Criar o hábito de se pagar primeiro</div>
+              <div class="action-detail">Assim que a renda consolidar no mês: separar o valor de investimento ANTES de gastar. Começar com R$300–500/mês. Quando virar hábito, aumentar progressivamente.</div>
+            </div>
+            <div class="action-who">Ambos</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Avisar Matheus quando houver valor para aportar</div>
+              <div class="action-detail">Mensagem: "Matheus, tenho R$X para aportar este mês." Matheus envia planilha com ativos, quantidades, percentuais e estratégia detalhada para cada centavo.</div>
+            </div>
+            <div class="action-who">Ambos</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Estratégia de IR para 2026 (declaração 2027)</div>
+              <div class="action-detail">Matheus apresentará estratégias: maximizar PGBL, gastos com saúde e educação para converter pagamento em restituição.</div>
+            </div>
+            <div class="action-who">Matheus</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Completar reserva de emergência</div>
+              <div class="action-detail">Meta: ~R$60.000 (6 meses de despesas obrigatórias). CDB Nubank já conta. Novos aportes em liquidez diária (Selic/CDI) até atingir a meta.</div>
+            </div>
+            <div class="action-who">Ambos</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Monitorar ações SAP (Equity Plus)</div>
+              <div class="action-detail">Total atual: ~R$53.302. R$10.000 já livres para venda. A cada liberação trimestral: avaliar venda parcial e diversificação. Nunca concentrar mais em empresa única.</div>
+            </div>
+            <div class="action-who">Marcelo</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HÁBITO SEMANAL -->
+      <div class="tl-block habit open">
+        <div class="tl-header" onclick="toggle(this.parentElement)">
+          <div class="tl-dot"></div>
+          <span class="tl-label">Hábito semanal — Todo domingo ou segunda</span>
+          <span class="tl-arrow">▼</span>
+        </div>
+        <div class="tl-body">
+          <div class="action-row">
+            <div>
+              <div class="action-title">Revisar lançamentos (10 minutos)</div>
+              <div class="action-detail">Classificar o que não foi identificado automaticamente. Verificar se as metas do mês estão sendo cumpridas. Sem isso, o orçamento perde sentido.</div>
+            </div>
+            <div class="action-who">Ambos</div>
+          </div>
+          <div class="action-row">
+            <div>
+              <div class="action-title">Verificar metas na ferramenta</div>
+              <div class="action-detail">Compras (meta R$2.000) · Restaurante (R$500) · Esportes (R$700) · Assinaturas (R$340). Se estiver próximo do limite, ajustar o restante do mês.</div>
+            </div>
+            <div class="action-who">Ambos</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── 3. PROJETOS DE VIDA ── -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">Projetos <span>de Vida</span></h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card p1">
+        <span class="proj-emoji">🦘</span>
+        <div class="proj-name">Viagem — Austrália</div>
+        <div class="proj-date">Novembro de 2026 · (ajustado de setembro)</div>
+        <div class="proj-val">~R$ 30.000</div>
+        <div class="proj-next"><strong>Próximos passos:</strong> Cotar passagens agora. Usar as 138k milhas LATAM. R$5k já em CDI — continuar acumulando.</div>
+      </div>
+
+      <div class="proj-card p2">
+        <span class="proj-emoji">✈️</span>
+        <div class="proj-name">Viagem — Alemanha</div>
+        <div class="proj-date">Julho – Agosto de 2026</div>
+        <div class="proj-val">~R$ 30.000</div>
+        <div class="proj-next"><strong>Próximos passos:</strong> Passagem de Marcelo custeada pela empresa. Cotar passagem de Maria + câmbio otimizado.</div>
+      </div>
+
+      <div class="proj-card p3">
+        <span class="proj-emoji">🏠</span>
+        <div class="proj-name">Apartamento / Casa Própria</div>
+        <div class="proj-date">2029 · horizonte de 3 anos</div>
+        <div class="proj-val">R$ 800.000</div>
+        <div class="proj-next"><strong>Próximos passos:</strong> Iniciar acumulação mensal já. Definir estratégia de entrada. Rever situação do apartamento atual.</div>
+      </div>
+
+      <div class="proj-card p4">
+        <span class="proj-emoji">👶</span>
+        <div class="proj-name">Primeiro Filho</div>
+        <div class="proj-date">~2029 · reunião específica a agendar</div>
+        <div class="proj-val">A definir</div>
+        <div class="proj-next"><strong>Próximos passos:</strong> Reunião dedicada: pré-natal, enxoval, plano de saúde e ajuste orçamentário pós-nascimento.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── 4. CARTEIRA ── -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">Carteira de <span>Investimentos</span></h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="formula">
+      <strong>Lógica da alocação:</strong> cada real investido pertence a um dos três baldes — reserva de emergência, projetos de vida ou independência financeira. Sobrou dinheiro? Avise o Matheus antes de alocar.
+    </div>
+
+    <table class="inv-table">
+      <thead>
+        <tr>
+          <th>Ativo</th>
+          <th>Valor atual</th>
+          <th>Balde</th>
+          <th>Ação recomendada</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Previdência PGBL — Platum RV49 (multimercado)</td>
+          <td>R$ 4.180</td>
+          <td><span class="inv-tag ind">Independência</span></td>
+          <td class="inv-action-text">Manter — matching 100% da empresa</td>
+        </tr>
+        <tr>
+          <td>Previdência PGBL — Platum IV RF (renda fixa)</td>
+          <td>R$ 16.319</td>
+          <td><span class="inv-tag ind">Independência</span></td>
+          <td class="inv-action-text">Manter — matching 100% da empresa</td>
+        </tr>
+        <tr>
+          <td>Previdência PGBL — Breve Imã Plus RF (IPCA+)</td>
+          <td>R$ 11.842</td>
+          <td><span class="inv-tag ind">Independência</span></td>
+          <td class="inv-action-text">Manter — matching 100% da empresa</td>
+        </tr>
+        <tr>
+          <td>Ações SAP (Equity Plus) — R$10k já livres</td>
+          <td>R$ 53.302</td>
+          <td><span class="inv-tag ind">Independência</span></td>
+          <td class="inv-action-text">Vender parcialmente nas liberações trimestrais e diversificar</td>
+        </tr>
+        <tr>
+          <td>CDB Nubank</td>
+          <td>A confirmar</td>
+          <td><span class="inv-tag res">Reserva</span></td>
+          <td class="inv-action-text">Manter. Complementar até ~R$60.000 (6 meses de despesas)</td>
+        </tr>
+        <tr>
+          <td>Investimentos XP</td>
+          <td>A confirmar</td>
+          <td><span class="inv-tag ind">Independência</span></td>
+          <td class="inv-action-text">Analisar rentabilidade e rebalancear na próxima reunião</td>
+        </tr>
+        <tr>
+          <td><strong>TOTAL MAPEADO</strong></td>
+          <td><strong>~R$ 85.000+</strong></td>
+          <td>—</td>
+          <td class="inv-action-text">Previdência + XP + Nubank a confirmar exato</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── 5. REGRAS DE OURO ── -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title">As <span>Regras de Ouro</span></h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="rules">
+      <div class="rule-card">
+        <div class="rule-icon">💰</div>
+        <div>
+          <div class="rule-title">Se pagar primeiro</div>
+          <div class="rule-desc">Caiu o dinheiro na conta → separe o investimento ANTES de gastar. O "boleto mais importante" de Marcelo e Maria é o das metas financeiras deles.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">📲</div>
+        <div>
+          <div class="rule-title">Sobrou = avisar o Matheus</div>
+          <div class="rule-desc">Não existe "guardar pra depois". Sobrou → aportar. Manda "Matheus, tenho R$X disponível" e receba a planilha com a alocação estratégica.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🗓️</div>
+        <div>
+          <div class="rule-title">10 minutos por semana</div>
+          <div class="rule-desc">Todo domingo ou segunda-feira: classificar lançamentos, checar metas, ajustar comportamento. Um hábito pequeno que muda o quadro inteiro no longo prazo.</div>
+        </div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🌿</div>
+        <div>
+          <div class="rule-title">Começar pequeno, crescer sempre</div>
+          <div class="rule-desc">Não precisa aportar R$2.400 no primeiro mês. R$300 já constroem o hábito. À medida que o orçamento melhorar, o aporte cresce naturalmente.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── 6. NÚMERO MÁGICO ── -->
+  <section>
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title">O <span>Número Mágico</span> — Independência Financeira</h2>
+      <div class="sec-line"></div>
+    </div>
+
+    <div class="formula">
+      <strong>Meta de renda passiva:</strong> R$7.905/mês — o valor que, quando os investimentos gerarem sozinhos, libera o casal de depender do trabalho.
+      <code>Patrimônio Necessário ≈ Renda Desejada × 300  →  R$7.905 × 300 ≈ R$2.371.500</code>
+      Esse número vai caindo à medida que a carteira cresce. <strong>R$300 investidos hoje, em 30 anos a juros compostos, valem mais de R$700.000.</strong> O casal já tem ~R$85.000+ — não está começando do zero.
+    </div>
+
+    <div class="formula" style="border-left-color:var(--green-l)">
+      <strong>Como o número vai encolhendo:</strong> a cada mês que os investimentos geram renda passiva (dividendos de FIIs, juros de renda fixa, valorização de ETFs), o aporte necessário diminui. O tempo e a consistência trabalham pelo casal.
+    </div>
+  </section>
+
+</div><!-- /container -->
+
+<footer>
+  <strong>Plano de Ação — Marcelo &amp; Maria</strong><br>
+  Planejador Financeiro: Matheus Melo, CFP · Grão — Grupo Primo · Maio de 2026<br>
+  Este documento é dinâmico e será atualizado a cada reunião de acompanhamento.
+</footer>
+
+<script>
+  function toggle(block) {
+    block.classList.toggle('open');
+  }
+</script>
+
+
+</div>
+
+<script>
+// Password check
+var CORRECT = "marcelo2026";
+
+function checkPw() {
+  var val = document.getElementById('pw-input').value;
+  if (val === CORRECT) {
+    document.getElementById('lock-screen').style.display = 'none';
+    document.getElementById('main-content').style.display = 'block';
+    document.body.style.background = '#0D0D0D';
+  } else {
+    document.getElementById('err-msg').style.display = 'block';
+    document.getElementById('pw-input').value = '';
+    document.getElementById('pw-input').focus();
+  }
+}
+
+function togglePw() {
+  var inp = document.getElementById('pw-input');
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+}
+
+document.getElementById('pw-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') checkPw();
+});
+
+// Original toggle function
+
+  function toggle(block) {
+    block.classList.toggle('open');
+  }
+
+</script>
+</body>
+</html>
